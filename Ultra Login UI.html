@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ultra Login UI</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* BACKGROUND GLOW */
+body::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: #7c3aed;
+  filter: blur(200px);
+  top: -100px;
+  left: -100px;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #06b6d4;
+  filter: blur(180px);
+  bottom: -100px;
+  right: -100px;
+}
+
+/* CARD */
+.card {
+  position: relative;
+  width: 360px;
+  padding: 35px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  color: #fff;
+  z-index: 1;
+  animation: fadeIn 1s ease;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(30px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* INPUT */
+.input-box {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(255,255,255,0.3);
+  outline: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.input-box label {
+  position: absolute;
+  left: 10px;
+  top: 12px;
+  color: #aaa;
+  font-size: 13px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+/* FLOAT EFFECT */
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+  top: -8px;
+  font-size: 11px;
+  color: #7c3aed;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #7c3aed, #06b6d4);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #7c3aed;
+}
+
+/* LINKS */
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 12px;
+}
+
+.links a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.links a:hover {
+  color: #fff;
+}
+
+.signup {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.signup a {
+  color: #06b6d4;
+  text-decoration: none;
+}
+
+/* PARTICLES */
+.particle {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 10s infinite linear;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(-10vh);
+  }
+}
+</style>
+
+</head>
+<body>
+
+<!-- PARTICLES -->
+<script>
+for(let i=0;i<30;i++){
+  let p = document.createElement("div");
+  p.classList.add("particle");
+  p.style.left = Math.random()*100 + "vw";
+  p.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(p);
+}
+</script>
+
+<!-- CARD -->
+<div class="card">
+  <h2>Login</h2>
+
+  <form id="loginForm">
+    <div class="input-box">
+      <input type="email" required id="email">
+      <label>Email</label>
+    </div>
+
+    <div class="input-box">
+      <input type="password" required id="password">
+      <label>Password</label>
+    </div>
+
+    <button type="submit">Sign In</button>
+
+    <div class="links">
+      <a href="#">Forgot?</a>
+      <a href="#">Remember</a>
+    </div>
+  </form>
+
+  <div class="signup">
+    No account? <a href="#">Register</a>
+  </div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
+
+  if(email === "admin@gmail.com" && pass === "123456"){
+    alert("Welcome back 😎");
+  } else {
+    alert("Login gagal ❌");
+  }
+});
+</script>
+
+</body>
+</html>
